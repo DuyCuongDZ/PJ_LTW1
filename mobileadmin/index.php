@@ -139,8 +139,8 @@
 								<td><?php echo $value['description']."<br>"?></td>
 								<td><?php echo $value['price']."<br>"?></td>
 								<td>
-									<a href="form.html" class="btn btn-success btn-mini">Edit</a>
-									<a href="delete.php?ID=<?php echo $value['ID']?>" class="btn btn-danger btn-mini">Delete</a>
+									<a href="form.php" class="btn btn-success btn-mini">Edit</a>
+									<a href="#" class="btn btn-danger btn-mini">Delete</a>
 								</td>
 							</tr>
 						</tbody>
@@ -149,7 +149,8 @@
 						?>
 						</table>
 						<ul class="pagination">
-							<?php							
+							<?php
+														
 							echo $db->paginate($url, $total, $page, $per_page, $offset);
 							?>
 						</ul>

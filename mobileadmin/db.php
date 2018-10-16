@@ -41,7 +41,10 @@ class Db{
 		// Tính số thứ tự trang bắt đầu  
 		$first_link = ($page - 1) * $per_page; 
 		$sql = "SELECT * FROM `products`, `manufactures`, `protypes` 
-		WHERE `products`.`manu_ID`=`manufactures`.`manu_ID` AND `products`.`type_ID` = `protypes`.`type_ID` LIMIT $first_link, $per_page"; 
+		WHERE `products`.`manu_ID`=`manufactures`.`manu_ID` AND `products`.`type_ID` = `protypes`.`type_ID`
+		ORDER BY `ID` DESC
+		LIMIT $first_link, $per_page
+		"; 
 		$result = self::$conn->query ($sql);        
 		return $this->getData($result);     
 	}
@@ -69,29 +72,26 @@ class Db{
 			} 
 				return $link; 
 	}
-
+	public function getAllManufacture(){
+		$sql = "SELECT * FROM `manufactures`";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
+	public function getAllProTypes(){
+		$sql = "SELECT * FROM `protypes`";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
 	//Insert
 	public function add($name, $price, $image, $desc, $manu_ID, $type_ID){
 		$sql = "INSERT INTO `products`(`name`, `price`, `image`, `description`, `manu_ID`, `type_ID`)
-		VALUES (`$name`, $price, `$image`, `$desc`, $manu_ID, $type_ID)";
+		VALUES ('$name', $price, '$image', '$desc', $manu_ID, $type_ID) ";
+		var_dump($sql);
 		self::$conn->query ($sql);
 	}
 	public function getTongSP(){
 		$sql = "SELECT * FROM `products`";
 		$result = self::$conn->query ($sql);        
-		return $this->getData($result);
-	}
-
-	//Xoa
-	public function deleteProducts($ID)
-	{
-		$sql = "DELETE FROM `products` WHERE `ID` = $ID";
-		return self::$conn->query($sql);
-	}
-
-	public function deleteManufatures($manu_ID)
-	{
-		$sql = "DELETE FROM `manufactures` WHERE `manu_ID` = $manu_ID";
-		return self::$conn->query($sql);
+		return $result->num_rows;
 	}
 }

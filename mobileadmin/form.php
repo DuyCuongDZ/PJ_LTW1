@@ -91,7 +91,7 @@
 					<div class="widget-content nopadding">
 
 						<!-- BEGIN USER FORM -->
-						<form action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
+						<form action="uploadFile.php" method="post" class="form-horizontal" enctype="multipart/form-data">
 							<div class="control-group">
 								<label class="control-label">Name :</label>
 								<div class="controls">
@@ -102,11 +102,15 @@
 								<label class="control-label">Choose a product type :</label>
 								<div class="controls">
 									<select name="type_id">
-										<option value="4">Speaker</option>
-										<option value="3">Laptop</option>
-										<option value="2">Tablet</option>
-										<option value="1">Cellphone</option>
-
+										<?php
+											require "config.php";
+											require "db.php";
+											$db = new Db;
+											$protype = $db->getAllProTypes();
+											foreach($protype as $value){
+										?>
+											<option value="<?php echo $value['type_ID']?>"><?php echo $value['type_name'] ?></option>
+										<?php } ?>
 									</select> *
 								</div>
 							</div>
@@ -114,11 +118,14 @@
 								<label class="control-label">Choose a manufacture :</label>
 								<div class="controls">
 									<select name="manu_id">
-										<option value="5">Oppo</option>
-										<option value="4">SamSung</option>
-										<option value="3">Sony</option>
-										<option value="2">Microsoft</option>
-										<option value="1">Apple</option>
+										<?php
+											
+											$manu = $db->getAllManufacture();
+											foreach($manu as $value){
+										?>	 
+											<option value="<?php echo $value['manu_ID']?>"><?php echo $value['manu_name']?></option>
+
+										<?php } ?>
 
 									</select> *
 								</div>
@@ -129,7 +136,7 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label"  >Description</label>
+									<label class="control-label">Description "<br>"</label>
 									<div class="controls">
 										<textarea class="span11" placeholder="Description" name = "description"></textarea>
 									</div>
