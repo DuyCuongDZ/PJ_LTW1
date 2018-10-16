@@ -51,4 +51,12 @@ class Db{
 			} 
 				return $link; 
 	} 
+		//login
+	public function getUserByUSName($username){
+		$sql = "SELECT * FROM `user`
+		WHERE username = '$username'";
+		//	var_dump($sql);
+		$result = self::$conn->query ($sql);        
+		return $this->getData($result);		 
+	}
 }
