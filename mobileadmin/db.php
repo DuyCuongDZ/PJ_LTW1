@@ -94,4 +94,20 @@ class Db{
 		$result = self::$conn->query ($sql);        
 		return $result->num_rows;
 	}
+				//login
+		public function getUserByUSName($username){
+			$sql = "SELECT * FROM `user`
+			WHERE username = '$username'";
+			//	var_dump($sql);
+			$result = self::$conn->query ($sql);        
+			return $this->getData($result);		 
+		}
+		public function deleteProducts($ID){
+
+			$sql = "DELETE FROM `products`
+			WHERE ID = '$ID'";
+			$result = self::$conn->query ($sql);        
+			return $this->getData($result);	
+		}
+
 }
