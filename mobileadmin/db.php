@@ -93,7 +93,7 @@ class Db{
 		$result = self::$conn->query ($sql);        
 		return $result->num_rows;
 	}
-<<<<<<< HEAD
+
 	//xoa
 	public function deleteProducts($ID){
 		$sql = "DELETE FROM `products` 
@@ -122,7 +122,7 @@ class Db{
 		self::$conn->query($sql);
 	}
 	
-=======
+
 				//login
 		public function getUserByUSName($username){
 			$sql = "SELECT * FROM `user`
@@ -131,13 +131,13 @@ class Db{
 			$result = self::$conn->query ($sql);        
 			return $this->getData($result);		 
 		}
-		public function deleteProducts($ID){
+/*		public function deleteProducts($ID){
 
 			$sql = "DELETE FROM `products`
 			WHERE ID = '$ID'";
 			$result = self::$conn->query ($sql);        
 			return $this->getData($result);	
-		}
+		}*/
 
->>>>>>> 8eb1eb002375c1c7da8fa3a604e59df711bf1343
+
 }

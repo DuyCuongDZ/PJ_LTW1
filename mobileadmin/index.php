@@ -139,11 +139,7 @@
 								<td><?php echo $value['description']."<br>"?></td>
 								<td><?php echo $value['price']."<br>"?></td>
 								<td>
-<<<<<<< HEAD
 									<a href="edit_form.php?id=<?php echo $value['ID'] ?>" class="btn btn-success btn-mini">Edit</a>
-=======
-									<a href="form.php" class="btn btn-success btn-mini">Edit</a>
->>>>>>> 8eb1eb002375c1c7da8fa3a604e59df711bf1343
 									<a href="delete.php?id=<?php echo $value['ID']?>" class="btn btn-danger btn-mini">Delete</a>
 								</td>
 							</tr>
