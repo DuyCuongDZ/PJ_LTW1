@@ -86,7 +86,6 @@ class Db{
 	public function add($name, $price, $image, $desc, $manu_ID, $type_ID){
 		$sql = "INSERT INTO `products`(`name`, `price`, `image`, `description`, `manu_ID`, `type_ID`)
 		VALUES ('$name', $price, '$image', '$desc', $manu_ID, $type_ID) ";
-		var_dump($sql);
 		self::$conn->query ($sql);
 	}
 	public function getTongSP(){
@@ -94,4 +93,32 @@ class Db{
 		$result = self::$conn->query ($sql);        
 		return $result->num_rows;
 	}
+	//xoa
+	public function deleteProducts($ID){
+		$sql = "DELETE FROM `products` 
+		WHERE `ID` = $ID";
+		var_dump($sql);
+		return self::$conn->query($sql);
+	}
+	public function deleteManufatures($manu_ID){
+		$sql = "DELETE FROM `manufactures` 
+		WHERE `manu_ID` = $manu_ID";
+
+		return self::$conn->query($sql);
+	}
+
+	//update 
+	public function hienThiSP($ID){
+		$sql = "SELECT * FROM `products`
+		WHERE `ID` = $ID";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
+	public function Update($name, $price, $image, $desc, $manu_ID, $type_ID, $id){
+		$sql = "UPDATE `products`
+		SET `name`='$name',`price`=$price,`image`='$image',`description`='$desc',`manu_ID`=$manu_ID,`type_ID`=$type_ID
+		WHERE `ID` = $id";
+		self::$conn->query($sql);
+	}
+	
 }

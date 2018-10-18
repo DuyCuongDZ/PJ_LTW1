@@ -7,8 +7,6 @@
             if($check != false){
                 $tagetDir = "public/images/";
                 $targetFile = $tagetDir . basename($_FILES['fileUpload']['name']);
-                // var_dump($tagetDir);
-                // var_dump($targetFile);
                 move_uploaded_file($_FILES['fileUpload']['tmp_name'], $targetFile);
                 include "config.php";  
                 include "db.php";
